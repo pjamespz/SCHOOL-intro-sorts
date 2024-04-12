@@ -13,6 +13,7 @@ class MergeSort:
 	 	@param list data to be sorted
 		'''
 		self.sortHelper(data, 0, len(data))
+		print(data)
 
 	def sortHelper(self, data, low, high):
 		'''
@@ -22,13 +23,13 @@ class MergeSort:
 		@param low start of the data to be sorted
 		@param high end of the data to be sorted (exclusive)
 		'''
+		
 		if high - low > 1:
 			mid = low + (high-low)//2
-		
+			print(f"Indices: {low}, {mid}, {high}")
 			# TODO: finish recursive calls to 2 halves
-			self.sortHelper(TODO)	
-			self.sortHelper(TODO)
-
+			self.sortHelper(data, low, mid)	
+			self.sortHelper(data, mid, high)
 			self.merge(data, low, mid, high)
 
 	def merge(self, data, low, mid, high):
@@ -45,24 +46,24 @@ class MergeSort:
 		      was passed as a parameter.
 		'''
 		temp = []
-		
 		i = low
 		j = mid
 
 		while (i < mid and j < high):
-			# TODO: Compare elements from the 2 sorted sublist and insert
-			# 		correct value into temp. Update index accordingly.
-			pass
-
-		# TODO
-		# copy over the remaining data on the i to mid side if there
-		# is some remaining.  
-
-		# TODO
-		# copy over the remaining data on the j to high side if there
-		# is some remaining.
-
-		# TODO: copy the data back from the temporary list to the original list
+			if data[i] <= data[j]:
+				temp.append(data[i])
+				i += 1
+			else:
+				temp.append(data[j])
+				j += 1
+		while (i < mid):
+			temp.append(data[i])
+			i += 1
+		while (j < high):
+			temp.append(data[j])
+			j += 1
+		for num in range(len(temp)):
+			data[low + num] = temp[num]
 
 
 
