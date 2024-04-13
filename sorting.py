@@ -26,7 +26,6 @@ class MergeSort:
 		
 		if high - low > 1:
 			mid = low + (high-low)//2
-			print(f"Indices: {low}, {mid}, {high}")
 			# TODO: finish recursive calls to 2 halves
 			self.sortHelper(data, low, mid)	
 			self.sortHelper(data, mid, high)
@@ -66,7 +65,6 @@ class MergeSort:
 			data[low + num] = temp[num]
 
 
-
 class QuickSort:
 	def __init__(self):
 		self.time = 0
@@ -76,12 +74,13 @@ class QuickSort:
 		data[index1] = data[index2]
 		data[index2] = temp
 
-	def sort(self, data):
+	def sort(self, data): # O(n log n) expected, O(n^2) worst depending on pivot
 		'''
 		Sort the list data using QuickSort
 	 	@param list data to be sorted
 		'''
 		self.sortHelper(data, 0, len(data)-1)
+		print(data)
 
 	def sortHelper(self, data, low, high):
 		'''
@@ -97,8 +96,8 @@ class QuickSort:
 		pivot = self.partition(data, low, high)
 
 		# TODO: Finish recursive calls to sortHelpter
-		self.sortHelper(TODO)	
-		self.sortHelper(TODO)
+		self.sortHelper(data, low, pivot - 1)	
+		self.sortHelper(data, pivot + 1, high)
 
 	def partition(self, data, low, high):
 		i = low - 1
@@ -111,6 +110,7 @@ class QuickSort:
 		self.swap(data,i,high)
 		return i
 
+
 class InsertionSort:
 	def __init__(self):
 		self.time = 0
@@ -120,13 +120,21 @@ class InsertionSort:
 		data[index1] = data[index2]
 		data[index2] = temp
 
-	def sort(self, data):
+	def sort(self, data): # O(n^2), but O(n) possible if pre-sorted
 		'''
 		Sort the list data using InsertionSort
 	 	@param list data to be sorted
 		'''
 		# TODO - complete implementation
-		pass
+		for i in range(1, len(data)):
+			current = data[i]
+			j = i
+			while (0 < j and current < data[j-1]):
+				self.swap(data, j, j - 1)
+				j -=1
+			data[j] = current
+		print(data)
+
 
 class ShellSort:
 	def __init__(self, gap_list):
@@ -145,7 +153,15 @@ class ShellSort:
 		Gap sequence is stored in self.gap_list upon construction
 		'''
 		# TODO - complete implementation
-		pass
+		for gap in self.gap_list:
+			for i in range(gap, len(data)):
+				current = data[i]
+				j = 1
+				while (gap <= j and current < data[j - gap]):
+					self.swap(data, j, j - gap)
+					j -= gap
+				data[j] = current
+		print(data)
 
 
 class BucketSort:
@@ -169,6 +185,7 @@ class BucketSort:
 		'''
 		# TODO - complete implementation
 		pass
+
 
 class RadixSort:
 	def __init__(self):
