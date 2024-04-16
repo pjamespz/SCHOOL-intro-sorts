@@ -9,7 +9,7 @@ Then, the code will time
 
 random.seed(260)
 
-names = ["MergeSort", "QuickSort", "InsertionSort", "ShellSort1", "ShellSort2", "BucketSort", "RadixSort"]
+names = ["MergeSort", "QuickSort", "InsertionSort", "ShellSort1", "ShellSort2", "BucketSort"]#, "RadixSort"]
 
 sorter = [None]*7
 sorter[0] = sorting.MergeSort()
@@ -18,7 +18,7 @@ sorter[2] = sorting.InsertionSort()
 sorter[3] = sorting.ShellSort([7,3,1])
 sorter[4] = sorting.ShellSort([1000,100,10,1])
 sorter[5] = sorting.BucketSort(1000)
-sorter[6] = sorting.RadixSort()
+#sorter[6] = sorting.RadixSort()
 
 DATA_SIZE = 500
 NUM_EXP = 5

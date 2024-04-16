@@ -13,7 +13,7 @@ class MergeSort:
 	 	@param list data to be sorted
 		'''
 		self.sortHelper(data, 0, len(data))
-		print(data)
+		return data
 
 	def sortHelper(self, data, low, high):
 		'''
@@ -79,8 +79,8 @@ class QuickSort:
 		Sort the list data using QuickSort
 	 	@param list data to be sorted
 		'''
-		self.sortHelper(data, 0, len(data)-1)
-		print(data)
+		self.sortHelper(data, 0, len(data) - 1)
+		return data
 
 	def sortHelper(self, data, low, high):
 		'''
@@ -133,7 +133,7 @@ class InsertionSort:
 				self.swap(data, j, j - 1)
 				j -=1
 			data[j] = current
-		print(data)
+		return data
 
 
 class ShellSort:
@@ -153,22 +153,24 @@ class ShellSort:
 		Gap sequence is stored in self.gap_list upon construction
 		'''
 		# TODO - complete implementation
+		n = len(data)
 		for gap in self.gap_list:
-			for i in range(gap, len(data)):
-				current = data[i]
-				j = 1
-				while (gap <= j and current < data[j - gap]):
-					self.swap(data, j, j - gap)
-					j -= gap
-				data[j] = current
-		print(data)
+			for start in range(gap):
+				for i in range(start, n, gap):
+					current = data[i]
+					j = i
+					while (gap <= j and current < data[j - gap]):
+						self.swap(data, j, j - gap)
+						j -= gap
+					data[j] = current
+		return data
 
 
 class BucketSort:
 	def __init__(self, range):
 		self.time = 0
 		self.range = range + 1
-		self.table = [None]*self.range
+		self.table = [None] * self.range
 		self.max = 0
 
 	def insert(self, elem):
@@ -184,7 +186,15 @@ class BucketSort:
 		bucket table is self.table
 		'''
 		# TODO - complete implementation
-		pass
+		for elem in data:
+			self.insert(elem)
+
+		sorted = []
+		for bucket in self.table:
+			if bucket is not None:
+				bucket.sort()
+				sorted.extend(bucket)
+		return sorted
 
 
 class RadixSort:
