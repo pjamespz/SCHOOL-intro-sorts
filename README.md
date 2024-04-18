@@ -2,5 +2,5 @@
 
 ## Peyton Politewicz and Connor McManigal
 
-### Implementing and comparing MergeSort, QuickSort, InsertionSort, ShellSort, BucketSort, RadixSort, and creating our own sorting algorithms
+### Implementing and comparing MergeSort, QuickSort, InsertionSort, ShellSort, BucketSort, RadixSort, and our own sorting algorithms
 
