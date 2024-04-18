@@ -67,24 +67,8 @@ for j in range(NUM_EXP):
     for i in range(len(sorter)):
         print(names[i], sorter[i].time)
 
-# Please read all of the following before starting your implementation:
-#
-# Details about Gradescope submission:
-#
-# - You should not include anything outside of standard Python libraries.
-# - Functions should be tested using Python 3.6+ on a Linux environment.
-# - You must submit the requirements.py and the sorting.py files, along with any additional source files that you might create
-# - The submission should either be the files themselves, or a zip file not containing any directories.
-# - We have provided a project1_tests.py file that contains some simple test cases to give an idea of how we will be running your
-#   code. Please use that file when testing your implementation.
-#
-# Finish the implementations of the following sorting algorithms:
-# 
-# - MergeSort
-# - QuickSort
-# - InsertionSort
-# - ShellSort
-# - BucketSort
-# - RadixSort
-#
-# - Each algorithm is implemented as a class. The testing code can be seen above. 
+
+
+
+
+

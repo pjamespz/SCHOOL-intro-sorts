@@ -57,3 +57,14 @@ random.seed(260)
 # - Implement a class for this new algorithm (using the provided code as reference).
 # - Verify functionaliy as in (1) and repeate the same experiments as in (2) to measure performance. 
 # - Describe the algorithm, provide pseudocode, and provide evidence of the run time improvement.  
+#
+#
+# Details about Gradescope submission:
+#
+# - You should not include anything outside of standard Python libraries.
+# - Functions should be tested using Python 3.6+ on a Linux environment.
+# - You must submit the requirements.py and the sorting.py files, along with any additional source files that you might create
+# - The submission should either be the files themselves, or a zip file not containing any directories.
+# - We have provided a project1_tests.py file that contains some simple test cases to give an idea of how we will be running your
+#   code. Please use that file when testing your implementation.
+#
