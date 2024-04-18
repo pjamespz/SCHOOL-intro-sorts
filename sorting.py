@@ -26,7 +26,7 @@ class MergeSort:
 		
 		if high - low > 1:
 			mid = low + (high-low)//2
-			# TODO: finish recursive calls to 2 halves
+
 			self.sortHelper(data, low, mid)	
 			self.sortHelper(data, mid, high)
 			self.merge(data, low, mid, high)
@@ -55,12 +55,15 @@ class MergeSort:
 			else:
 				temp.append(data[j])
 				j += 1
+
 		while (i < mid):
 			temp.append(data[i])
 			i += 1
+			
 		while (j < high):
 			temp.append(data[j])
 			j += 1
+
 		for num in range(len(temp)):
 			data[low + num] = temp[num]
 
@@ -95,7 +98,6 @@ class QuickSort:
 		
 		pivot = self.partition(data, low, high)
 
-		# TODO: Finish recursive calls to sortHelpter
 		self.sortHelper(data, low, pivot - 1)	
 		self.sortHelper(data, pivot + 1, high)
 
@@ -120,19 +122,18 @@ class InsertionSort:
 		data[index1] = data[index2]
 		data[index2] = temp
 
-	def sort(self, data): # O(n^2), but O(n) possible if pre-sorted
+	def sort(self, data): # O(n^2) expected, but O(n) possible if pre-sorted
 		'''
 		Sort the list data using InsertionSort
 	 	@param list data to be sorted
 		'''
-		# TODO - complete implementation
 		for i in range(1, len(data)):
 			current = data[i]
-			j = i
-			while (0 < j and current < data[j-1]):
-				self.swap(data, j, j - 1)
+			j = i - 1
+			while (0 <= j and current < data[j]):
+				data[j + 1] = data[j] # use this instead of swap helper function, much faster(~2x on 16000)
 				j -=1
-			data[j] = current
+			data[j + 1] = current
 		return data
 
 
@@ -146,17 +147,14 @@ class ShellSort:
 		data[index1] = data[index2]
 		data[index2] = temp
 
-	def sort(self, data):
+	def sort(self, data): # O(n log n) expected, worst case O(n^2)
 		'''
 		Sort the list data using ShellSort
 	 	@param list data to be sorted
 		Gap sequence is stored in self.gap_list upon construction
 		'''
-		# TODO - complete implementation
-		n = len(data)
 		for gap in self.gap_list:
-			for start in range(gap):
-				for i in range(start, n, gap):
+				for i in range(gap, len(data)):
 					current = data[i]
 					j = i
 					while (gap <= j and current < data[j - gap]):
@@ -179,22 +177,21 @@ class BucketSort:
 		else:
 			self.table[elem].append(elem)
 
-	def sort(self, data):
+	def sort(self, data): # O(n + N) where N is the range of values
 		'''
 		Sort the list data using BucketSort
 	 	@param list data to be sorted
 		bucket table is self.table
 		'''
-		# TODO - complete implementation
 		for elem in data:
 			self.insert(elem)
 
-		sorted = []
+		link_list = []
 		for bucket in self.table:
 			if bucket is not None:
-				bucket.sort()
-				sorted.extend(bucket)
-		return sorted
+				link_list.extend(bucket)
+		data[:] = link_list
+		return data
 
 
 class RadixSort:
@@ -205,22 +202,53 @@ class RadixSort:
 		self.digits = 0
 
 	def insert(self, elem, iter):
-		# TODO - complete implementation
-		# Refer to insert for BucketSort
-		pass
+		digit = ((elem // (10 ** iter)) % 10)
 
-	def sort(self, data):
+		if self.table[digit] == None:
+			self.table[digit] = [elem]
+		else:
+			self.table[digit].append(elem)
+
+	def sort(self, data): # O((n+m)*d) = O(n*d) expected where d is maximum # of digits and m is range of values
 		'''
 		Sort the list data using RadixSort
 	 	@param list data to be sorted
 		bucket table is self.table with 10 entries
 		'''
-		# TODO - complete implementation
-		pass
+		self.max = max(data)
+		self.digits = len(str(self.max))
+
+		for i in range(self.digits):
+			for elem in data:
+				self.insert(elem, i)
+
+			link_list = []
+			for bucket in self.table:
+				if bucket is not None:
+					link_list.extend(bucket)
+			
+			data[:] = link_list
+			self.table = [None] * 10
+		return data
 
 
+class BinaryInsertionSort: # Insertion Sort Improvement with Binary Search(Connor)
+	def __init__(self,):
+		self.time = 0
 
-
-	# feel free to define new methods in addition to the above
-	# fill in the definitions of each required member function (above),
-	# and for any additional member functions you define
+	def binary_search(self, data, value, start, end): # O(log n)
+		while start < end:
+			mid = (start + end) // 2
+			if data[mid] < value:
+				start = mid + 1
+			else:
+				end = mid
+		return start
+	
+	def sort(self, data): # O(n) * O(log n) = O(n log n) in best case; O(n^2) worst case
+		for i in range(1, len(data)): # O(n)
+			current = data[i]
+			j = self.binary_search(data, current, 0, i) # O(log n)
+			data[j + 1:i + 1] = data[j:i]
+			data[j] = current
+		return data
