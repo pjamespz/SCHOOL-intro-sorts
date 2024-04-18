@@ -1,0 +1,1 @@
+#create a swapmap of 2logn pairs for any given n.
