@@ -15,7 +15,7 @@ sorter[5] = sorting.BucketSort(1000)
 sorter[6] = sorting.RadixSort()
 sorter[7] = sorting.BinaryInsertionSort()
 
-# Verification Intializations
+
 DATA_SIZE = 500
 NUM_EXP = 5
 data = []
@@ -39,14 +39,13 @@ for i in range(len(sorter)):
     sorter[i].sort(data)
     verify(data,test_data,i)
 
-
-# Testing Initializations
 DATA = [1000, 2000, 4000, 8000, 16000]
 NUM_RUNS = 5
 uniform_results = []
 almost_sorted_results = []
 
-# Uniformly Distributed Testing and Results
+
+# Uniformly Distributed Test Data
 for t in DATA:
     for i in range(NUM_RUNS):
         random.seed(random.randint(0,500))
@@ -65,9 +64,3 @@ for t in DATA:
 uniform_results_df = pd.DataFrame(uniform_results)
 uniform_results_df.to_csv('uniform_results.csv', index=False)
 
-# Almost Sorted Testing and Results
-
-
-
-almost_sorted_results_df = pd.DataFrame(almost_sorted_results)
-almost_sorted_results_df.to_csv('almost_sorted_results.csv', index=False)
