@@ -131,7 +131,7 @@ class InsertionSort:
 			current = data[i]
 			j = i - 1
 			while (0 <= j and current < data[j]):
-				data[j + 1] = data[j] # use this instead of swap helper function, much faster(~2x on 16000)
+				data[j + 1] = data[j] # use this instead of "self.swap(data, j, j + 1)", much faster(~2x on 16000) 
 				j -=1
 			data[j + 1] = current
 		return data
