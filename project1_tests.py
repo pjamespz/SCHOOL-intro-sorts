@@ -47,20 +47,23 @@ uniform_results = []
 almost_sorted_results = []
 
 # Uniformly Distributed Testing and Results
-for t in DATA:
+for size in DATA:
     for i in range(NUM_RUNS):
         random.seed(random.randint(0,500))
+        #print()
+        #print("DATA SIZE:", size)
         data = []
-        for i in range(t):
+        for k in range(size):
             data.append(random.randint(0,1000))
 
-        for i in range(len(sorter)):
-            data = data_save.copy()
+        for j in range(len(sorter)):
+            data_copy = data.copy()
             start_time = time.perf_counter()
-            sorter[i].sort(data)
+            sorter[j].sort(data_copy)
             end_time = time.perf_counter()
-            sorter[i].time = end_time - start_time
-            uniform_results.append({'Algorithm': names[i], 'Data Size': t, 'Runtime': sorter[i].time, 'Theoretical Big-O': 0})
+            sorter[j].time = end_time - start_time
+            #print(names[j], sorter[j].time)
+            uniform_results.append({'Algorithm': names[j], 'Data Size': size, 'Runtime': sorter[j].time, 'Theoretical Big-O': 0})
 
 uniform_results_df = pd.DataFrame(uniform_results)
 uniform_results_df.to_csv('uniform_results.csv', index=False)
@@ -69,5 +72,5 @@ uniform_results_df.to_csv('uniform_results.csv', index=False)
 
 
 
-almost_sorted_results_df = pd.DataFrame(almost_sorted_results)
-almost_sorted_results_df.to_csv('almost_sorted_results.csv', index=False)
+#almost_sorted_results_df = pd.DataFrame(almost_sorted_results)
+#almost_sorted_results_df.to_csv('almost_sorted_results.csv', index=False)

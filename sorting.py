@@ -131,7 +131,7 @@ class InsertionSort:
 			current = data[i]
 			j = i - 1
 			while (0 <= j and current < data[j]):
-				data[j + 1] = data[j] # use this instead of "self.swap(data, j, j + 1)", much faster(~2x on 16000) 
+				data[j + 1] = data[j] # use this instead of "self.swap(data, j, j + 1)" faster
 				j -=1
 			data[j + 1] = current
 		return data
@@ -172,7 +172,7 @@ class BucketSort:
 		self.max = 0
 
 	def insert(self, elem):
-		if self.table[elem] == None:
+		if self.table[elem] is None:
 			self.table[elem] = [elem]
 		else:
 			self.table[elem].append(elem)
