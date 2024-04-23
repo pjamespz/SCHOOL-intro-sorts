@@ -237,7 +237,7 @@ class RadixSort:
         return data
 
 
-class CustomSort1: # Insertion Sort Improvement with Binary Search(Connor)
+class CustomSort1: # Insertion Sort Improvement with Binary Search (Connor)
     def __init__(self,):
         self.time = 0
 
