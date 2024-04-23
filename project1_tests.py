@@ -31,7 +31,7 @@ def verify(data, test_data, index):
 
 ### Initialization
 
-names = ["MergeSort", "QuickSort", "InsertionSort", "ShellSort1", "ShellSort2", "BucketSort", "RadixSort", "CustomSort1", "MoMSort"]
+names = ["MergeSort", "QuickSort", "InsertionSort", "ShellSort1", "ShellSort2", "BucketSort", "RadixSort", "CustomSort1", "CustomSort2"]
 
 sorter = [None] * 9
 sorter[0] = sorting.MergeSort()
@@ -41,10 +41,10 @@ sorter[3] = sorting.ShellSort([7,3,1])
 sorter[4] = sorting.ShellSort([1000,100,10,1])
 sorter[5] = sorting.BucketSort(1000)
 sorter[6] = sorting.RadixSort()
-sorter[7] = sorting.BinaryInsertionSort()
-sorter[8] = sorting.MoMSort()
+sorter[7] = sorting.CustomSort1()
+sorter[8] = sorting.CustomSort2()
 
-SIZES = [500, 1000, 2000, 4000, 8000] # Data sizes to iterate across
+SIZES = [1000, 2000, 4000, 8000, 16000] # Data sizes to iterate across
 #NUM_EXP = 5 Redundant if looping using seed array.
 SEEDS = random.sample(range(1,1000),4)
 SEEDS.insert(0, 260)
@@ -118,9 +118,8 @@ uniform_results_df = pd.DataFrame(uniform_results)
 almost_results_df = pd.DataFrame(almost_results)
 print(uniform_results_df)
 print(almost_results_df)
-#uniform_results_df.to_csv('uniform_results.csv', index=False)
 
-# Almost Sorted Testing and Results
+#Results export
 
-#almost_sorted_results_df = pd.DataFrame(almost_sorted_results)
-#almost_sorted_results_df.to_csv('almost_sorted_results.csv', index=False)
+uniform_results_df.to_csv('uniform_results.csv', index=False)
+almost_results_df.to_csv('almost_sorted_results.csv', index=False)

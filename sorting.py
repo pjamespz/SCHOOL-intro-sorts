@@ -237,7 +237,7 @@ class RadixSort:
         return data
 
 
-class BinaryInsertionSort: # Insertion Sort Improvement with Binary Search(Connor)
+class CustomSort1: # Insertion Sort Improvement with Binary Search(Connor)
     def __init__(self,):
         self.time = 0
 
@@ -258,7 +258,7 @@ class BinaryInsertionSort: # Insertion Sort Improvement with Binary Search(Conno
             data[j] = current
         return data
     
-class MoMSort:
+class CustomSort2: #Quicksort with Median-of-medians pivot picking. (Peyton)
     def __init__(self):
         self.time = 0
 
