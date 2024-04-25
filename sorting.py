@@ -318,7 +318,7 @@ class CustomSort2:
                     self.merge(arr, left, mid, right)
             size *= 2
 '''    
-class CustomSort2: #Quicksort with Median-of-medians pivot picking. (Peyton)
+class CustomSort2: #Quicksort with Median-of-medians pivot picking. (Peyton - abandoned due to poor performance at these data sizes)
     def __init__(self):
         self.time = 0
 
