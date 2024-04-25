@@ -303,12 +303,10 @@ class CustomSort2:
     def timsort_basic(self, arr):
         n = len(arr)
 
-        # Step 1: Create runs using insertion sort
         for start in range(0, n, self.MIN_RUN):
             end = min(start + self.MIN_RUN - 1, n - 1)
             self.insertion_sort(arr, start, end)
 
-        # Step 2: Merge runs
         size = self.MIN_RUN
         while size < n:
             for left in range(0, n, 2 * size):
