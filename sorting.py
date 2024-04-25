@@ -257,7 +257,67 @@ class CustomSort1: # Insertion Sort Improvement with Binary Search (Connor)
             data[j + 1:i + 1] = data[j:i]
             data[j] = current
         return data
-    
+
+class CustomSort2:
+    def __init__(self):
+        self.MIN_RUN = 32
+
+    def sort(self, data):
+        '''
+        Sort the list data using a simplified version of Timsort
+        @param list data to be sorted
+        '''
+        self.timsort_basic(data)
+        return data
+
+    def insertion_sort(self, arr, left, right):
+        for i in range(left + 1, right + 1):
+            key = arr[i]
+            j = i - 1
+            while j >= left and arr[j] > key:
+                arr[j + 1] = arr[j]
+                j -= 1
+            arr[j + 1] = key
+
+    def merge(self, arr, left, mid, right):
+        temp = []
+        i, j = left, mid + 1
+        while i <= mid and j <= right:
+            if arr[i] <= arr[j]:
+                temp.append(arr[i])
+                i += 1
+            else:
+                temp.append(arr[j])
+                j += 1
+                
+        while i <= mid:
+            temp.append(arr[i])
+            i += 1
+        while j <= right:
+            temp.append(arr[j])
+            j += 1
+            
+        for i in range(len(temp)):
+            arr[left + i] = temp[i]
+
+    def timsort_basic(self, arr):
+        n = len(arr)
+
+        # Step 1: Create runs using insertion sort
+        for start in range(0, n, self.MIN_RUN):
+            end = min(start + self.MIN_RUN - 1, n - 1)
+            self.insertion_sort(arr, start, end)
+
+        # Step 2: Merge runs
+        size = self.MIN_RUN
+        while size < n:
+            for left in range(0, n, 2 * size):
+                mid = min(n - 1, left + size - 1)
+                right = min((left + 2 * size - 1), (n - 1))
+                if mid < right:
+                    self.merge(arr, left, mid, right)
+            size *= 2
+'''    
 class CustomSort2: #Quicksort with Median-of-medians pivot picking. (Peyton)
     def __init__(self):
         self.time = 0
@@ -318,3 +378,4 @@ class CustomSort2: #Quicksort with Median-of-medians pivot picking. (Peyton)
                 else:
                     break
         return (high + low) // 2  # Return median of sorted 5 or fewer elements
+        '''
