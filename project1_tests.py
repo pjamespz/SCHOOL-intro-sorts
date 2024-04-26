@@ -1,4 +1,4 @@
-import sorting 
+import implementation 
 import random
 import time
 import pandas as pd
@@ -34,15 +34,15 @@ def verify(data, test_data, index):
 names = ["MergeSort", "QuickSort", "InsertionSort", "ShellSort1", "ShellSort2", "BucketSort", "RadixSort", "CustomSort1", "CustomSort2"]
 
 sorter = [None] * 9
-sorter[0] = sorting.MergeSort()
-sorter[1] = sorting.QuickSort()
-sorter[2] = sorting.InsertionSort()
-sorter[3] = sorting.ShellSort([7,3,1])
-sorter[4] = sorting.ShellSort([1000,100,10,1])
-sorter[5] = sorting.BucketSort(1000)
-sorter[6] = sorting.RadixSort()
-sorter[7] = sorting.CustomSort1()
-sorter[8] = sorting.CustomSort2()
+sorter[0] = implementation.MergeSort()
+sorter[1] = implementation.QuickSort()
+sorter[2] = implementation.InsertionSort()
+sorter[3] = implementation.ShellSort([7,3,1])
+sorter[4] = implementation.ShellSort([1000,100,10,1])
+sorter[5] = implementation.BucketSort(1000)
+sorter[6] = implementation.RadixSort()
+sorter[7] = implementation.CustomSort1()
+sorter[8] = implementation.CustomSort2()
 
 SIZES = [1000, 2000, 4000, 8000, 16000] # Data sizes to iterate across
 #NUM_EXP = 5 Redundant if looping using seed array.
