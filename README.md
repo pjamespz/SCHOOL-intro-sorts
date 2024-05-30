@@ -1,5 +1,7 @@
 # DATA260P Project 1: Sorting Algorithm Analysis
 
+*View the notebook here:* https://connormcmanigal.github.io/sorting-algorithm-analysis/final_report.pdf
+
 ## Connor McManigal and Peyton Politewicz 
 
 - Implemented MergeSort, QuickSort, InsertionSort, ShellSort, BucketSort, and RadixSort
